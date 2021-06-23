@@ -1,7 +1,5 @@
 
-$ \Theta = \begin{pmatrix}\alpha & \beta\\
-\gamma & \delta
-\end{pmatrix} $
+$\Theta = \begin{pmatrix}\alpha & \beta\\\gamma & \delta\end{pmatrix}$
 ##### Table of Contents  
 - [Random forest](#Random-forest)  
   - [normal claims](#normal-claims )  
