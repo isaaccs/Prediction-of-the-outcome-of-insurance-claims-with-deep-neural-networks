@@ -1,5 +1,6 @@
 
 ##### Table of Contents  
+- [Duration model ](#Duration-model)  
 - [Random forest](#Random-forest)  
   - [normal claims](#normal-claims )  
   - [extreme claims](#extreme-claims )  
@@ -10,6 +11,29 @@
   - [classification](#classification ) 
 - [Fully Connected model](#Fully-Connected-model)  
 - [Text model ](#Text-model )  
+
+# Duration model 
+
+goal : maximize concordance index 
+
+hyperparameters grid: 
+* penalizer : 1 *10^-4 to 1.0 
+* l1 ration :  1 *10^-4 to 1.0 
+
+best hyperparameters: 
+* penalizer 0.004835
+* l1_ratio 0.059547
+
+baseline estimation breslow 
+* number of observation 121524
+* number of events observed 95009
+* partial log likelihood -1012723.30
+
+* Concordance 0.71
+* Partial AIC 2025718.61
+* log likelihood ration test 32391.77 calculate on 137 observation from training data randomly draw
+
+
 # Random forest
 hyperparameters grid: 
 * max features : auto, sort, log2
@@ -190,7 +214,7 @@ hyperparameters grid:
 * batch size 8 or 16
 * loss : custom loss 1, custom loss 2, custom loss 3
 
-
+best hyperparameters: 
 * input neurons : 32
 * number of additionnal LSTM layer : 0
 * number of neurones in their additionnal LSTM layer : 0
