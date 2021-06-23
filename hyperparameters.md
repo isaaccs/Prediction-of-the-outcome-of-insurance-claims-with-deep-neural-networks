@@ -1,11 +1,11 @@
-Random forest:
-max features : auto, sort, log2
-Numbers of trees 10 to 300
-max depth 1 to 10
-min_sample split 2 to 100
-min sample leaf 2 to 100
+# Random forest
+* max features : auto, sort, log2
+* Numbers of trees 10 to 300
+* max depth 1 to 10
+* min_sample split 2 to 100
+* min sample leaf 2 to 100
 
-normal claims 
+## normal claims 
 
 goal : minimize MSE
 
@@ -24,7 +24,7 @@ goal : minimize MSE
 |         48        |       auto      |          193        |       10     |           9         |          28        |
 |         54        |       auto      |          36         |       10     |          66         |          43        |
 
-extreme claims 
+## extreme claims 
 
 goal : minimize MSE
 
@@ -41,7 +41,7 @@ goal : minimize MSE
 |         48        |       auto      |          92         |       9      |          87         |          21        |
 |         54        |       log2      |          15         |       9      |          14         |          18        |
 
-classification
+## classification
 
 
 goal : maximize F1 score
