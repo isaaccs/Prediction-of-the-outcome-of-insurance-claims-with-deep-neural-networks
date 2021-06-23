@@ -7,7 +7,9 @@
   - [normal claims](#normal-claims )  
   - [extreme claims](#extreme-claims )  
   - [classification](#classification ) 
+- [Fully Connected ](#Fully-Connected )  
 # Random forest
+hyperparameters grid: 
 * max features : auto, sort, log2
 * Numbers of trees 10 to 300
 * max depth 1 to 10
@@ -71,6 +73,7 @@ goal : maximize F1 score
 
 
 # Gradient boosting
+hyperparameters grid:
 * max features : auto, sort, log2
 * Numbers of trees 10 to 100
 * max depth 1 to 10
@@ -131,3 +134,25 @@ goal : maximize F1 score
 |         42        |       auto      |     deviance   |        0.1       |          82         |       10     |          24         |          53        |
 |         48        |       auto      |   exponential  |        0.1       |          48         |       10     |           2         |          2         |
 |         54        |       sqrt      |   exponential  |        0.1       |          71         |       3      |          39         |          64        |
+
+
+# Fully Connected 
+
+goal : maximize F1 score
+
+hyperparameters grid: 
+* input neurons : 16-32-64-128-256-512-1024 
+* number of Hidden Layer : 0 to 5
+* number of neurones in their Hidden Layer : 16-32-64-128-256-512-1024
+* optimizer : Adam, Adagrad, SGD
+* LR: 0.1,0.01,0.001,0.0001
+* activation : swish, sigmoid, relu, linear, hard sigmoid, tanh,
+* dropout : 0.01, 0.05;0.1,0.15,0.2,0.25,0.3,0.35,0.4
+* batch size 8 or 16
+* loss : custom loss 1, custom loss 2, custom loss 3
+custom loss is a weighted cross entropy with different weights
+
+* (1,6) (15,0.5)
+* (1,4) (10,0.5)
+* (1,1.5) (4,0.5)
+
