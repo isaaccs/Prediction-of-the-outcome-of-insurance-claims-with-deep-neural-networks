@@ -1,7 +1,7 @@
 ##### Table of Contents  
 [Random forest](#Random-forest)  
-[normal-claims](## normal-claims )  
-[extreme-claims](## extreme-claims )  
+[normal-claims](##normal-claims )  
+[extreme-claims](#extreme-claims )  
 [classification](## classification )  
 # Random forest
 * max features : auto, sort, log2
