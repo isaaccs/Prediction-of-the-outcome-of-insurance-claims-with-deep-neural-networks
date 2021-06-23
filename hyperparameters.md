@@ -1,5 +1,5 @@
 ##### Table of Contents  
-[Random forest](# Random forest)  
+[Random forest](#Random-forest)  
 
 # Random forest
 * max features : auto, sort, log2
