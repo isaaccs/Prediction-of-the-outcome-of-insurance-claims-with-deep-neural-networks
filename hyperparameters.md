@@ -1,5 +1,4 @@
 
-$\Theta = \begin{pmatrix}\alpha & \beta\\\gamma & \delta\end{pmatrix}$
 ##### Table of Contents  
 - [Random forest](#Random-forest)  
   - [normal claims](#normal-claims )  
@@ -9,7 +8,8 @@ $\Theta = \begin{pmatrix}\alpha & \beta\\\gamma & \delta\end{pmatrix}$
   - [normal claims](#normal-claims )  
   - [extreme claims](#extreme-claims )  
   - [classification](#classification ) 
-- [Fully Connected ](#Fully-Connected )  
+- [Fully Connected model](#Fully-Connected-model)  
+- [Text model ](#Text-model )  
 # Random forest
 hyperparameters grid: 
 * max features : auto, sort, log2
@@ -138,7 +138,7 @@ goal : maximize F1 score
 |         54        |       sqrt      |   exponential  |        0.1       |          71         |       3      |          39         |          64        |
 
 
-# Fully Connected 
+# Fully Connected model
 
 goal : maximize F1 score
 
@@ -157,4 +157,50 @@ custom loss is a weighted cross entropy with different weights
 * (1,6) (15,0.5)
 * (1,4) (10,0.5)
 * (1,1.5) (4,0.5)
+best hyperparameters: 
+
+* input neurons : 512
+* number of Hidden Layer : 2
+* number of neurones in their Hidden Layer  :064
+* optimizer : Adam
+* LR: 0.0001
+* activation : tanh,
+* dropout : 0.05
+* batch size 16
+* loss : custom loss 2
+
+
+# Text model
+
+goal : maximize F1 score
+
+
+Each Fully Connected layer is followed by a BatchNormalization layer.
+
+hyperparameters grid: 
+* input neurons : 16-32-64-128-256-512-1024 
+* number of additionnal LSTM layer : 0 to 3
+* number of neurones in their additionnal LSTM layer : 16-32-64-128-256-512-1024
+* input neurons in the first Fully Connected layer: 16-32-64-128-256-512-10241
+* number of additionnal Fully Connected  layer : 0 to 3
+* number of neurones in their Fully Connected  layer: 16-32-64-128-256-512-1024
+* optimizer : Adam, Adagrad, SGD
+* LR: 0.1,0.01,0.001,0.0001
+* activation : swish, sigmoid, relu, linear, hard sigmoid, tanh,
+* batch size 8 or 16
+* loss : custom loss 1, custom loss 2, custom loss 3
+
+
+* input neurons : 32
+* number of additionnal LSTM layer : 0
+* number of neurones in their additionnal LSTM layer : 0
+* input neurons in the first Fully Connected layer: 64
+* number of additionnal Fully Connected  layer : 2
+* number of neurones in their Fully Connected  layer: 1024
+* optimizer : Adagrad
+* LR: 0.01
+* activation : linear
+* batch size 8
+* loss : custom loss 1
+
 
