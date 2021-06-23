@@ -1,8 +1,8 @@
 ##### Table of Contents  
-[Random forest](#Random-forest)  
-[normal-claims](##normal-claims )  
-[extreme-claims](#extreme-claims )  
-[classification](## classification )  
+- [Random forest](#Random-forest)  
+  - [normal claims](##normal-claims )  
+  - [extreme claims](##extreme-claims )  
+  - [classification](##classification )  
 # Random forest
 * max features : auto, sort, log2
 * Numbers of trees 10 to 300
