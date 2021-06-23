@@ -3,6 +3,10 @@
   - [normal claims](#normal-claims )  
   - [extreme claims](#extreme-claims )  
   - [classification](#classification )  
+- [Gradient boosting](#Gradient-boosting)  
+  - [normal claims](#normal-claims )  
+  - [extreme claims](#extreme-claims )  
+  - [classification](#classification ) 
 # Random forest
 * max features : auto, sort, log2
 * Numbers of trees 10 to 300
@@ -64,3 +68,66 @@ goal : maximize F1 score
 |         42        |       sqrt      |          84         |       8      |          91         |          35        |
 |         48        |       sqrt      |          213        |       8      |          89         |          21        |
 |         54        |       sqrt      |          10         |       5      |           2         |          27        |
+
+
+# Gradient boosting
+* max features : auto, sort, log2
+* Numbers of trees 10 to 100
+* max depth 1 to 10
+* min_sample split 2 to 100
+* min sample leaf 2 to 100
+* loss: deviance, exponential for classification ls, lad, huber, quantile for regression
+* learning rate 0.1,0.01,0.001
+
+
+## normal claims 
+
+goal : minimize MSE
+
+|   Time in month   |   max features  |    loss  |   learning rate  |   Numbers of trees  |   max depth  |   min_sample split  |   min sample leaf  |
+|:-----------------:|:---------------:|:--------:|:----------------:|:-------------------:|:------------:|:-------------------:|:------------------:|
+|          0        |       sqrt      |     ls   |        0.1       |          150        |       6      |          100        |         100        |
+|          6        |       auto      |   huber  |        0.1       |          118        |       9      |          74         |          51        |
+|         12        |       sqrt      |     ls   |        0.1       |          127        |       8      |          15         |          41        |
+|         18        |       auto      |   huber  |        0.1       |          117        |       8      |          30         |          87        |
+|         24        |       auto      |   huber  |        0.1       |          150        |       7      |          46         |          18        |
+|         30        |       auto      |     ls   |        0.1       |          138        |       8      |          41         |          37        |
+|         36        |       sqrt      |     ls   |        0.1       |          150        |       10     |          88         |          79        |
+|         42        |       auto      |     ls   |        0.1       |          131        |       8      |           2         |          51        |
+|         48        |       sqrt      |     ls   |        0.01      |          150        |       10     |          68         |          80        |
+|         54        |       auto      |   huber  |        0.1       |          66         |       10     |          100        |          2         |
+
+## extreme claims 
+
+goal : minimize MSE
+
+|   Time in month   |   max features  |     loss    |   learning rate  |   Numbers of trees  |   max depth  |   min_sample split  |   min sample leaf  |
+|:-----------------:|:---------------:|:-----------:|:----------------:|:-------------------:|:------------:|:-------------------:|:------------------:|
+|          0        |       log2      |      ls     |        0.1       |          103        |       4      |           2         |          26        |
+|          6        |       log2      |      ls     |        0.1       |          116        |       6      |          16         |          92        |
+|         12        |       sqrt      |   quantile  |        0.1       |          150        |       10     |          100        |         100        |
+|         18        |       auto      |   quantile  |        0.01      |          150        |       10     |          77         |         100        |
+|         24        |       sqrt      |      ls     |        0.1       |          73         |       4      |          34         |          30        |
+|         30        |       log2      |      ls     |        0.1       |          18         |       6      |          88         |          40        |
+|         36        |       log2      |   quantile  |        0.1       |          134        |       3      |          11         |          49        |
+|         42        |       log2      |      ls     |        0.1       |          148        |       6      |          11         |          58        |
+|         48        |       log2      |      ls     |        0.1       |          56         |       10     |          42         |          4         |
+|         54        |       log2      |      ls     |        0.1       |          50         |       8      |          57         |          20        |
+
+## classification
+
+
+goal : maximize F1 score
+
+|   Time in month   |   max features  |       loss     |   learning rate  |   Numbers of trees  |   max depth  |   min_sample split  |   min sample leaf  |
+|:-----------------:|:---------------:|:--------------:|:----------------:|:-------------------:|:------------:|:-------------------:|:------------------:|
+|          0        |       sqrt      |     deviance   |        0.1       |          90         |       3      |           9         |          8         |
+|          6        |       auto      |     deviance   |        0.1       |          47         |       4      |          36         |          54        |
+|         12        |       auto      |     deviance   |        0.1       |          91         |       10     |          96         |          86        |
+|         18        |       sqrt      |     deviance   |        0.1       |          100        |       9      |           2         |         100        |
+|         24        |       sqrt      |   exponential  |        0.1       |          78         |       8      |          94         |          73        |
+|         30        |       auto      |   exponential  |        0.1       |          97         |       6      |          99         |          6         |
+|         36        |       log2      |     deviance   |        0.1       |          100        |       10     |          33         |          68        |
+|         42        |       auto      |     deviance   |        0.1       |          82         |       10     |          24         |          53        |
+|         48        |       auto      |   exponential  |        0.1       |          48         |       10     |           2         |          2         |
+|         54        |       sqrt      |   exponential  |        0.1       |          71         |       3      |          39         |          64        |
