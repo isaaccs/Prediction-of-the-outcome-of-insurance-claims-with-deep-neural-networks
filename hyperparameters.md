@@ -1,3 +1,6 @@
+##### Table of Contents  
+[Random forest](#Random forest)  
+
 # Random forest
 * max features : auto, sort, log2
 * Numbers of trees 10 to 300
