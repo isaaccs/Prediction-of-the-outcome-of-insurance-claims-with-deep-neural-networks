@@ -4,6 +4,10 @@
 - [Fully Connected model](#Fully-Connected-model)  
 - [Text model ](#Text-model )  
 - [Temporal Model ](#Temporal-model )  
+- [Neural Networks ](#Neural-Networks )  
+  - [normal claims](#normal-claims )  
+  - [extreme claims](#extreme-claims )  
+  - [classification](#classification )  
 - [Random forest](#Random-forest)  
   - [normal claims](#normal-claims )  
   - [extreme claims](#extreme-claims )  
@@ -142,7 +146,85 @@ best hyperparameters:
 |         48        	|        128       	|     0.35   	|          1         	|                  64                 	|     0.05   	|           256          	|     0.3    	|         0       	|                   0                 	|      0     	|      SGD     	|    0.01   	|       relu      	|       32      	|    CL3  	|    False   	|         True       	|
 |         54        	|        512       	|     0.01   	|          1         	|                  512                	|     0.01   	|            16          	|     0.01   	|         0       	|                   0                 	|      0     	|      Adam    	|   0.0001  	|       swish     	|       32      	|    CL3  	|    False   	|         True       	|
 
+# Neural Networks
 
+Classification  goal : maximize F1 score
+Regression  goal : minimize MSE
+hyperparameters grid: 
+* input neurons for text features : 16-32-64-128-256 
+* number of additionnal Fully Connected  layer  for text features: 0 to 4
+* dropout text: 0.01, 0.05, 0.1,0.15,0.2,0.25,0.3,0.35,0.4
+
+* input neurons for temporal features : 16-32-64-128-256 
+* number of additionnal Fully Connected  layer   for temporal features: 0 to 4
+* dropout temporal: 0.01, 0.05, 0.1,0.15,0.2,0.25,0.3,0.35,0.4
+
+* input neurons for Fully Connected features : 16-32-64-128-256 
+* number of additionnal Fully Connected  layer   for Fully Connected features: 0 to 4
+* Fully Connected dropout : 0.01, 0.05, 0.1,0.15,0.2,0.25,0.3,0.35,0.4
+
+then merge all layers 
+
+* input neurons in last FC : 16-32-64-128-256
+* number of additionnal Fully Connected  layer: 0 to 4
+* dropout: 0.01, 0.05, 0.1,0.15,0.2,0.25,0.3,0.35,0.4
+
+* optimizer : Adam, Adagrad, SGD
+* LR: 0.1,0.01,0.001,0.0001
+* activation : swish, sigmoid, relu, linear, hard sigmoid, tanh,
+* batch size 8 ,16,32
+* loss for classification: custom loss 1, custom loss 2, custom loss 3
+* loss for regression : mean absolute error, mean absolute percentage error, mean squared error,  mean squared logarithmic error, kl divergence
+
+
+
+
+
+## normal claims
+
+|   Time in month   	|   input neurons for text features   	|   num FC layer for text features  	|   dropout text   	|   input neurons for temporal features   	|   num FC layer for temporalfeatures  	|   dropoutemporal   	|   input neurons for FC features   	|   num FC layer for FC features  	|   dropout FC  	|   input neurons in last FC  	|   num FC layer  	|   dropout  	|   optimizer  	|     LR   	|   Activation  	|   Batch size  	|   Loss  	|
+|:-----------------:	|:-----------------------------------:	|:---------------------------------:	|:----------------:	|:---------------------------------------:	|:------------------------------------:	|:------------------:	|:---------------------------------:	|:-------------------------------:	|:-------------:	|:---------------------------:	|:---------------:	|:----------:	|:------------:	|:--------:	|:-------------:	|:-------------:	|:-------:	|
+|          0        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|          6        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         12        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         18        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         24        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         30        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         36        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         42        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         48        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         54        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+
+
+## extrems claims
+
+|   Time in month   	|   input neurons for text features   	|   num FC layer for text features  	|   dropout text   	|   input neurons for temporal features   	|   num FC layer for temporalfeatures  	|   dropoutemporal   	|   input neurons for FC features   	|   num FC layer for FC features  	|   dropout FC  	|   input neurons in last FC  	|   num FC layer  	|   dropout  	|   optimizer  	|     LR   	|   Activation  	|   Batch size  	|   Loss  	|
+|:-----------------:	|:-----------------------------------:	|:---------------------------------:	|:----------------:	|:---------------------------------------:	|:------------------------------------:	|:------------------:	|:---------------------------------:	|:-------------------------------:	|:-------------:	|:---------------------------:	|:---------------:	|:----------:	|:------------:	|:--------:	|:-------------:	|:-------------:	|:-------:	|
+|          0        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|          6        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         12        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         18        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         24        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         30        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         36        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         42        	|                  16                 	|                  4                	|        0.05      	|                    128                  	|                   4                  	|         0.15       	|                 256               	|                 3               	|       0.1     	|               0             	|         0       	|      0     	|    Adagrad   	|    0.01  	|      swish    	|       16      	|    MSE  	|
+|         48        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+|         54        	|                  64                 	|                  1                	|        0.05      	|                    64                   	|                   4                  	|         0.3        	|                 16                	|                 1               	|       0.4     	|              32             	|         2       	|     0.15   	|      Adam    	|   0.001  	|      relu     	|        8      	|    MSE  	|
+
+## classification 
+
+|   Time in month   	|   input neurons for text features   	|   num FC layer for text features  	|   dropout text   	|   input neurons for temporal features   	|   num FC layer for temporalfeatures  	|   dropoutemporal   	|   input neurons for FC features   	|   num FC layer for FC features  	|   dropout FC  	|   input neurons in last FC  	|   num FC layer  	|   dropout  	|   optimizer  	|     LR    	|   Activation  	|   Batch size  	|   Loss  	|
+|:-----------------:	|:-----------------------------------:	|:---------------------------------:	|:----------------:	|:---------------------------------------:	|:------------------------------------:	|:------------------:	|:---------------------------------:	|:-------------------------------:	|:-------------:	|:---------------------------:	|:---------------:	|:----------:	|:------------:	|:---------:	|:-------------:	|:-------------:	|:-------:	|
+|          0        	|                  128                	|                  3                	|        0.3       	|                    64                   	|                   4                  	|         0.05       	|                 64                	|                 1               	|       0.1     	|               0             	|         0       	|      0     	|      Adam    	|   0.0001  	|      tanh     	|       16      	|    CL2  	|
+|          6        	|                  64                 	|                  2                	|        0.15      	|                    16                   	|                   1                  	|         0.01       	|                  0                	|                 0               	|        0      	|               0             	|         0       	|      0     	|    Adagrad   	|     0.1   	|      swish    	|        8      	|    CL2  	|
+|         12        	|                   0                 	|                  0                	|         0        	|                    32                   	|                   1                  	|         0.15       	|                  0                	|                 0               	|        0      	|               0             	|         0       	|      0     	|      Adam    	|    0.01   	|      relu     	|        8      	|    CL2  	|
+|         18        	|                  64                 	|                  2                	|        0.35      	|                    256                  	|                   2                  	|         0.05       	|                 256               	|                 2               	|      0.25     	|              256            	|         3       	|     0.05   	|    Adagrad   	|    0.01   	|      swish    	|       16      	|    CL2  	|
+|         24        	|                  128                	|                  1                	|        0.2       	|                     0                   	|                   0                  	|          0         	|                 16                	|                 1               	|      0.15     	|               0             	|         0       	|      0     	|      SGD     	|     0.1   	|     sigmoid   	|        8      	|    CL3  	|
+|         30        	|                  32                 	|                  2                	|        0.3       	|                    64                   	|                   1                  	|         0.25       	|                 64                	|                 1               	|      0.05     	|              64             	|         1       	|     0.3    	|      SGD     	|     0.1   	|      relu     	|       16      	|    CL3  	|
+|         36        	|                  256                	|                  1                	|        0.15      	|                    256                  	|                   4                  	|         0.4        	|                  0                	|                 0               	|        0      	|              16             	|         4       	|     0.01   	|      Adam    	|   0.0001  	|      tanh     	|       32      	|    CL3  	|
+|         42        	|                  128                	|                  2                	|        0.3       	|                    256                  	|                   1                  	|         0.35       	|                 128               	|                 4               	|      0.35     	|              32             	|         1       	|     0.25   	|    Adagrad   	|    0.01   	|      swish    	|       16      	|    CL1  	|
+|         48        	|                  256                	|                  3                	|        0.25      	|                    16                   	|                   2                  	|         0.1        	|                 64                	|                 3               	|       0.2     	|               0             	|         0       	|      0     	|    Adagrad   	|    0.01   	|      tanh     	|       16      	|    CL1  	|
+|         54        	|                  16                 	|                  1                	|        0.01      	|                    128                  	|                   4                  	|         0.05       	|                 16                	|                 1               	|       0.1     	|              32             	|         1       	|     0.2    	|      SGD     	|    0.01   	|     linear    	|        8      	|    CL3  	|
 
 # Random forest
 hyperparameters grid: 
